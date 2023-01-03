@@ -1,9 +1,10 @@
-import {getNotionBiblio} from '~/server/lib/notion';
+import {getNotionBiblio, getNotionReferences} from '~/server/lib/notion';
 
 export default defineEventHandler(async event => {
     const notionBiblio = await getNotionBiblio()
-    console.log(notionBiblio)
+    const notionReferences = await getNotionReferences()
     return {
-        result: 'hey'
+        biblio: notionBiblio,
+        references: notionReferences
     }
 })
