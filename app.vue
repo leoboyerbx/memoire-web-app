@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-base-200 min-h-screen">
+  <div class="bg-base-200 min-h-screen pb-12">
+    <div class="navbar bg-primary text-white px-8">
+      <h1 class="normal-case text-xl">Vote par Internet</h1>
+    </div>
     <Search/>
   </div>
 </template>

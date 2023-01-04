@@ -1,4 +1,7 @@
 <script lang="ts" setup="">
+
+import BiblioList from '~/components/Biblio/BiblioList.vue';
+
 const currentMode = ref('footnotes')
 const query = ref('')
 
@@ -23,10 +26,9 @@ const {pending, data: notionData} = useLazyFetch('/api/getNotionData')
   <div class="hero py-24">
     <div class="hero-content text-center">
       <div class="flex flex-col gap-4 items-center max-w-md">
+        <h2 class="text-2xl font-bold">Rechercher une référence</h2>
 
-        <h1 class="text-2xl font-bold">Rechercher une référence</h1>
-
-        <div class="tabs tabs-boxed gap-2">
+        <div class="tabs tabs-boxed gap-2 items-center justify-center">
           <button class="tab btn-animation rounded-lg transition-colors duration-200"
                   :class="{ 'tab-active': currentMode === 'footnotes' }"
                   @click="currentMode = 'footnotes'"
@@ -44,7 +46,7 @@ const {pending, data: notionData} = useLazyFetch('/api/getNotionData')
                @input="updateQuery"
                :placeholder="currentMode === 'footnotes' ? 'Numéro' : 'Rechercher dans la bibliographie...'"
                class="input transition-all duration-300 ease-in-out-quart"
-               :class="currentMode === 'footnotes' ? 'w-24' : 'w-96'"
+               :class="currentMode === 'footnotes' ? 'w-24' : ' w-full'"
         />
       </div>
     </div>
@@ -52,9 +54,15 @@ const {pending, data: notionData} = useLazyFetch('/api/getNotionData')
   <main v-if="pending">
     Chargement...
   </main>
-  <main v-else class="container mx-auto px-16">
+  <main v-else class="container mx-auto px-4 lg:px-16">
     <transition>
-      <Footnotes v-if="currentMode === 'footnotes'" :query="query" :references="notionData.references"/>
+      <FootnotesList v-if="currentMode === 'footnotes'" :query="query" :references="notionData.references"/>
+      <BiblioList v-else-if="currentMode === 'biblio'" :query="query" :references="notionData.biblio"/>
     </transition>
   </main>
 </template>
+<style scoped>
+.tab-active, .tab-active:hover{
+  color: #fff;
+}
+</style>
