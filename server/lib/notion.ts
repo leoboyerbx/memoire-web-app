@@ -72,6 +72,7 @@ export async function getNotionBiblio() {
     return cacheData.biblio
 }
 export type NotionBiblioItem = {
+    id: string,
     title: string,
     author: string,
     owner?: string,

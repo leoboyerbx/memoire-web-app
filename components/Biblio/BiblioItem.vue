@@ -17,13 +17,13 @@ const ifF = props.reference.type === 'Vidéo' ? 'e' : ''
     <div class="flex gap-6 items-center">
       <div class="flex flex-col items-start flex-grow">
         <div class="text-gray-500 transition duration-200 group-hover:text-gray-800">
-          <span class="font-bold">{{ reference.author }}</span>
-          <span v-if="reference.owner" class="ml-1">- {{ reference.owner }}</span>
+          <span class="font-bold" v-html="reference.author"></span>
+          <span v-if="reference.owner" class="ml-1" v-html="'- ' + reference.owner"></span>
         </div>
         <span
-            class="font-semibold text-neutral transition duration-200 group-hover:text-primary text-lg">{{
-            reference.title
-          }}</span>
+            class="font-semibold text-neutral transition duration-200 group-hover:text-primary text-lg"
+        v-html="reference.title"
+        ></span>
       </div>
 
       <Icon class="text-2xl transition duration-300 self-start group-hover:(text-primary)"
