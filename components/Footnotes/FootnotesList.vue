@@ -17,7 +17,7 @@ const filteredReferences = computed(() => {
 
 </script>
 <template>
-  <main>
+  <main class="relative">
     <transition mode="out-in">
       <div v-if="filteredReferences.length" class="flex flex-col gap-4">
         <transition-group name="list">

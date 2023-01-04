@@ -54,7 +54,7 @@ const {pending, data: notionData} = useLazyFetch('/api/getNotionData')
   <main v-if="pending">
     Chargement...
   </main>
-  <main v-else class="container mx-auto px-4 lg:px-16">
+  <main v-else class="container relative mx-auto px-4 lg:px-16">
     <transition>
       <FootnotesList v-if="currentMode === 'footnotes'" :query="query" :references="notionData.references"/>
       <BiblioList v-else-if="currentMode === 'biblio'" :query="query" :references="notionData.biblio"/>
